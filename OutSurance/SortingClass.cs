@@ -5,19 +5,25 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Outsurance
 {
-    class Program
+    public class SortingClass
     {
-        static string loc;
-        
+        public static string loc;
+
+
         static void Main(string[] args)
         {
-            GetCsvData();
+            var newData = GetCsvData();
+
+            PrintNameAndSurname(newData);
+
+            PrintAddress(newData);
         }
 
-        static void GetCsvData()
+        public static List<Data> GetCsvData()
         {
             loc = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
 
@@ -36,12 +42,10 @@ namespace Outsurance
 
             sr.Close();
 
-            PrintNameAndSurname(newData);
-
-            PrintAddress(newData);
+            return newData;
         }
 
-        static void PrintNameAndSurname(List<Data> newData)
+        public static void PrintNameAndSurname(List<Data> newData)
         {
             var outputLoc = @"\Output\NameAndSurname.txt";
 
@@ -93,7 +97,7 @@ namespace Outsurance
 
         }
 
-        static void PrintAddress(List<Data> newData)
+        public static void PrintAddress(List<Data> newData)
         {
             var outputLoc = @"\Output\Address.txt";
 
